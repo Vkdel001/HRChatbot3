@@ -1,0 +1,6 @@
+Flask
+embedchain
+python-dotenv
+gunicorn
+sentence-transformers
+torch

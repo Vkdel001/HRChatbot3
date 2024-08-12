@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User - Ask Questions</title>
+</head>
+<body>
+    <h1>User - Ask Questions</h1>
+    
+    <form id="query-form" action="/query" method="POST">
+        <input type="text" name="question" placeholder="Ask a question" required>
+        <button type="submit">Ask</button>
+    </form>
+
+    <div id="response"></div>
+
+    <script>
+        document.getElementById('query-form').onsubmit = async (event) => {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const response = await fetch('/query', {
+                method: 'POST',
+                body: formData
+            });
+            const result = await response.json();
+            document.getElementById('response').innerText = result.response || result.error;
+        };
+    </script>
+</body>
+</html>
